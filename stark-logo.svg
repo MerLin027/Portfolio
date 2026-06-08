@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
-  <!-- A stylized Stark Industries logo -->
-  <polygon points="20,50 40,15 60,50 40,85" fill="#000000" />
-  <polygon points="45,50 60,25 75,50 60,75" fill="#000000" />
-  <text x="90" y="65" font-family="Arial, sans-serif" font-weight="900" font-size="54" fill="#000000" letter-spacing="-1">STARK</text>
-  <text x="270" y="65" font-family="Arial, sans-serif" font-weight="400" font-size="54" fill="#000000">INDUSTRIES</text>
-</svg>
