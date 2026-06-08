@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vrushank Ganatra | Full-Stack Developer</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e0e3e5",
+                        "on-primary-container": "#0d0096",
+                        "surface-bright": "#363a3b",
+                        "primary": "#c0c1ff",
+                        "on-tertiary": "#283044",
+                        "surface-dim": "#101415",
+                        "on-secondary-container": "#00424e",
+                        "on-secondary": "#003640",
+                        "surface-container-lowest": "#0b0f10",
+                        "outline-variant": "#464554",
+                        "tertiary-fixed": "#dae2fd",
+                        "inverse-on-surface": "#2d3133",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "surface-tint": "#c0c1ff",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-container-low": "#191c1e",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "outline": "#908fa0",
+                        "on-primary-fixed": "#07006c",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "on-error": "#690005",
+                        "on-primary": "#1000a9",
+                        "surface-container-highest": "#323537",
+                        "surface": "#101415",
+                        "secondary-fixed": "#acedff",
+                        "on-tertiary-fixed": "#131b2e",
+                        "on-surface": "#e0e3e5",
+                        "secondary": "#4cd7f6",
+                        "surface-container-high": "#272a2c",
+                        "secondary-container": "#03b5d3",
+                        "primary-container": "#8083ff",
+                        "background": "#101415",
+                        "tertiary": "#bec6e0",
+                        "on-tertiary-container": "#22293d",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "surface-container": "#1d2022",
+                        "on-surface-variant": "#c7c4d7",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-variant": "#323537",
+                        "inverse-primary": "#494bd6",
+                        "tertiary-container": "#8990a8",
+                        "on-secondary-fixed": "#001f26",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "inverse-surface": "#e0e3e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit-xl": "48px",
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "section-gap-mobile": "64px",
+                        "section-gap-desktop": "100px",
+                        "unit-md": "16px",
+                        "unit-lg": "24px",
+                        "unit-xs": "4px",
+                        "unit-sm": "8px",
+                        "margin-page": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.2", "fontWeight": "800" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.0", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .bg-navy {
+            background-color: #0F172A;
+        }
+
+        .bg-surface-navy {
+            background-color: #1E293B;
+        }
+
+        .border-navy {
+            border-color: rgba(248, 250, 252, 0.1);
+        }
+
+        .text-offwhite {
+            color: #F8FAFC;
+        }
+
+        .text-indigo-accent {
+            color: #6366F1;
+        }
+
+        .bg-indigo-accent {
+            background-color: #6366F1;
+        }
+
+        .border-indigo-accent {
+            border-color: #6366F1;
+        }
+
+        .hover-bg-indigo-dark:hover {
+            background-color: #4F46E5;
+        }
+
+        .tag-bg {
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Glassmorphism */
+        .glass-nav {
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-navy text-offwhite antialiased font-body-md text-body-md selection:bg-indigo-accent selection:text-white">
+    <!-- TopNavBar Component -->
+    <header class="glass-nav border-b border-navy w-full top-0 sticky z-50 transition-all duration-300">
+        <div
+            class="flex justify-between items-center w-full px-margin-page py-unit-md max-w-container-max mx-auto z-50">
+            <a class="text-body-lg font-display-lg font-extrabold tracking-tighter text-offwhite hover:text-indigo-accent transition-colors"
+                href="#">Vrushank Ganatra</a>
+            <nav class="hidden md:flex gap-gutter items-center">
+                <a class="text-indigo-accent font-bold border-b-2 border-indigo-accent pb-1 text-label-md font-label-md transition-transform hover:scale-95"
+                    href="#about">About</a>
+                <a class="text-on-surface-variant hover:text-indigo-accent transition-colors text-label-md font-label-md transition-all duration-300"
+                    href="#skills">Skills</a>
+                <a class="text-on-surface-variant hover:text-indigo-accent transition-colors text-label-md font-label-md transition-all duration-300"
+                    href="#projects">Projects</a>
+                <a class="text-on-surface-variant hover:text-indigo-accent transition-colors text-label-md font-label-md transition-all duration-300"
+                    href="#resume">Resume</a>
+                <a class="text-on-surface-variant hover:text-indigo-accent transition-colors text-label-md font-label-md transition-all duration-300"
+                    href="#contact">Contact</a>
+            </nav>
+            <div class="hidden md:block">
+                <a class="bg-indigo-accent text-white px-6 py-2 rounded font-label-md text-label-md hover-bg-indigo-dark transition-colors"
+                    href="#contact">Hire Me</a>
+            </div>
+            <!-- Mobile Menu Button Placeholder -->
+            <button class="md:hidden text-offwhite p-2">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </header>
+    <main class="max-w-container-max mx-auto px-margin-page">
+        <!-- Hero / About Section -->
+        <section
+            class="min-h-[819px] flex flex-col-reverse md:flex-row items-center justify-center gap-section-gap-mobile md:gap-section-gap-desktop py-section-gap-mobile md:py-section-gap-desktop"
+            id="about">
+            <div class="flex-1 flex flex-col gap-unit-lg items-start">
+                <div>
+                    <h1
+                        class="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-offwhite mb-2">
+                        Vrushank Ganatra</h1>
+                    <h2 class="text-headline-md font-headline-md text-indigo-accent">B.Tech IT Student & MERN Stack Dev</h2>
+                </div>
+                <p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">
+                    I am a B.Tech. IT student entering my 4th year, with a strong focus on MERN stack development. Beyond web technologies, I also have a keen interest and experience in Python and Data Analytics. I love building impactful applications and deriving insights from data.
+                </p>
+                <div class="flex gap-unit-md mt-unit-sm">
+                    <a class="bg-indigo-accent text-white px-8 py-3 rounded-DEFAULT font-label-md text-label-md hover-bg-indigo-dark transition-colors flex items-center gap-2"
+                        href="#projects">
+                        View Projects <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </a>
+                    <a class="border border-indigo-accent text-indigo-accent px-8 py-3 rounded-DEFAULT font-label-md text-label-md hover:bg-indigo-accent hover:text-white transition-colors flex items-center gap-2"
+                        href="#resume">
+                        Download Resume <span class="material-symbols-outlined text-[18px]">download</span>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-1 flex justify-center md:justify-end w-full">
+                <div
+                    class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-surface-navy shadow-[0_20px_40px_rgba(0,0,0,0.3)]">
+                    <img alt="Profile" class="w-full h-full object-cover"
+                        data-alt="A professional headshot of a modern software developer in a dimly lit studio setting. The lighting is cinematic with subtle cool blue and deep indigo accents highlighting the subject's face against a dark, minimalist background. The mood is focused, confident, and highly technical. The composition is a classic portrait crop, fitting perfectly into a circular frame."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyYlLvyccZXp3VPBNjohgxNCSi1xc-KKbW2sR1ke33MX0LQ5q9hID5eBo1XsKR2APZUH0fs8KaIKlb5Fqh8fpvs2hSPiEnMDACSsfFCZ40VStxgHNPHnsuL7e694lbwsIfYB8dX40EyYe24f0p1x3MeoEnxI4M4rHF-oF_Rcn5LAaBaRv5cM0i5Hn4qkZIx1sPvKfArpR6ZR1Np5h9C-s6W7-eaBrSgZoW_N7GtujxqWPkC9CwqXzITe5dcrowkkZC_JZUXGZLT6I" />
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section class="py-section-gap-mobile md:py-section-gap-desktop" id="skills">
+            <h2
+                class="text-headline-md font-headline-md text-offwhite mb-unit-xl text-center md:text-left flex items-center gap-4">
+                <span class="w-12 h-px bg-indigo-accent hidden md:block"></span> Skills &amp; Technologies
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-unit-xl">
+                <!-- Category 1 -->
+                <div
+                    class="bg-surface-navy p-unit-lg rounded-xl border border-navy hover:border-indigo-accent/50 transition-colors">
+                    <h3 class="text-body-lg font-bold text-offwhite mb-unit-md">Web Development</h3>
+                    <div class="flex flex-wrap gap-unit-sm">
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">MongoDB</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">Express.js</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">React</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">Node.js</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">Tailwind CSS</span>
+                    </div>
+                </div>
+                <!-- Category 2 -->
+                <div
+                    class="bg-surface-navy p-unit-lg rounded-xl border border-navy hover:border-indigo-accent/50 transition-colors">
+                    <h3 class="text-body-lg font-bold text-offwhite mb-unit-md">Languages</h3>
+                    <div class="flex flex-wrap gap-unit-sm">
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">JavaScript</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">Python</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">C++</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">HTML/CSS</span>
+                    </div>
+                </div>
+                <!-- Category 3 -->
+                <div
+                    class="bg-surface-navy p-unit-lg rounded-xl border border-navy hover:border-indigo-accent/50 transition-colors">
+                    <h3 class="text-body-lg font-bold text-offwhite mb-unit-md">Data Analytics</h3>
+                    <div class="flex flex-wrap gap-unit-sm">
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">Pandas</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">NumPy</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">SQL</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">Data Visualization</span>
+                    </div>
+                </div>
+                <!-- Category 4 -->
+                <div
+                    class="bg-surface-navy p-unit-lg rounded-xl border border-navy hover:border-indigo-accent/50 transition-colors">
+                    <h3 class="text-body-lg font-bold text-offwhite mb-unit-md">Tools & Technologies</h3>
+                    <div class="flex flex-wrap gap-unit-sm">
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">Git</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">GitHub</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">VS Code</span>
+                        <span
+                            class="tag-bg text-indigo-accent px-4 py-2 rounded-full text-label-md font-label-md border border-indigo-accent/20">Jupyter</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section class="py-section-gap-mobile md:py-section-gap-desktop" id="projects">
+            <h2
+                class="text-headline-md font-headline-md text-offwhite mb-unit-xl text-center md:text-left flex items-center gap-4">
+                <span class="w-12 h-px bg-indigo-accent hidden md:block"></span> Featured Projects
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                <!-- Project Card 1 -->
+                <div
+                    class="bg-surface-navy rounded-xl border border-navy overflow-hidden hover:border-indigo-accent transition-colors duration-300 group flex flex-col h-full">
+                    <div class="aspect-video overflow-hidden relative">
+                        <img alt="Project 1"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="A sleek, modern dashboard interface displayed on a high-resolution monitor. The UI features a dark mode aesthetic with vibrant data visualization charts in electric indigo and cyan. The setting is a dimly lit, professional developer workspace. The overall mood is high-tech, sophisticated, and data-driven."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBwUNc3k4WQMz_lu6u9PuHxPkCSSzpNJKXrqsXZjURqn3oz8ftOOr5MPeiZaKv24SvdM1uEISX-erpEhgEN1tqWMATVtO6RXtY8tnsRqIxmv01feorH3nfNDdID7wiecK5y4lQVHPs36rLEGBDdcjsbCYnnmGzTnq8DBV2EKK89Q4znWQDTFXYj2Idjc_0dB2xsIlwYXmOQa1zy5AGGCy5680FjhDHybu8guefn9em0abY-5R4nxPEsxmv4pKPfVwlOsPAD_S4akE" />
+                        <div
+                            class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <a class="bg-indigo-accent text-white p-2 rounded-full hover-bg-indigo-dark" href="#"><span
+                                    class="material-symbols-outlined">link</span></a>
+                            <a class="bg-surface-navy border border-navy text-white p-2 rounded-full hover:border-indigo-accent"
+                                href="#"><span class="material-symbols-outlined">code</span></a>
+                        </div>
+                    </div>
+                    <div class="p-unit-lg flex flex-col flex-grow">
+                        <h3
+                            class="text-body-lg font-bold text-offwhite mb-2 group-hover:text-indigo-accent transition-colors">
+                            VinylVault</h3>
+                        <p class="text-on-surface-variant text-body-md font-body-md mb-unit-md flex-grow">A comprehensive MERN stack application for cataloging and discovering vinyl records with a sleek and modern user interface.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-label-md font-label-md text-indigo-accent">MongoDB</span>
+                            <span class="text-label-md font-label-md text-indigo-accent">Express</span>
+                            <span class="text-label-md font-label-md text-indigo-accent">React</span>
+                            <span class="text-label-md font-label-md text-indigo-accent">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div
+                    class="bg-surface-navy rounded-xl border border-navy overflow-hidden hover:border-indigo-accent transition-colors duration-300 group flex flex-col h-full">
+                    <div class="aspect-video overflow-hidden relative">
+                        <img alt="Project 2"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="A minimalist e-commerce mobile application interface shown on a floating smartphone mockup. The design is sleek, using deep navy backgrounds and bright white product imagery. The scene is lit with soft, studio-quality lighting that creates subtle reflections on the device screen. The aesthetic is premium, modern, and highly polished."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRhrbaVBspi2kMGESZBswX5MvEx6_kKxh8MOFJuMO4KF4GOeR_L0kCunzdXmDhNHvAORuw7Fu485k568FWSCUUtQxfTUtdoD0uxqCE2iD5ivcJdmZvdPTtkgN0EYlW8_jyYabTSKDoKXO1RXcfWmB3nWR8dz2ypMNRgp5p3uZIHBVyZ8veQFagpXvCDCs2TZnNXInRxiW4hppnlumdZItohNJdsFhs620pumZNMLyGvy4WyvCvJqsO19LvUHul0eykVkv2WeB-lgE" />
+                        <div
+                            class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <a class="bg-indigo-accent text-white p-2 rounded-full hover-bg-indigo-dark" href="#"><span
+                                    class="material-symbols-outlined">link</span></a>
+                            <a class="bg-surface-navy border border-navy text-white p-2 rounded-full hover:border-indigo-accent"
+                                href="#"><span class="material-symbols-outlined">code</span></a>
+                        </div>
+                    </div>
+                    <div class="p-unit-lg flex flex-col flex-grow">
+                        <h3
+                            class="text-body-lg font-bold text-offwhite mb-2 group-hover:text-indigo-accent transition-colors">
+                            BillCraft</h3>
+                        <p class="text-on-surface-variant text-body-md font-body-md mb-unit-md flex-grow">A feature-rich invoicing and billing system integrated with data analytics using Python to track and visualize business performance.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-label-md font-label-md text-indigo-accent">React</span>
+                            <span class="text-label-md font-label-md text-indigo-accent">Node.js</span>
+                            <span class="text-label-md font-label-md text-indigo-accent">Python</span>
+                            <span class="text-label-md font-label-md text-indigo-accent">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Resume Download Banner -->
+    <section class="w-full bg-indigo-accent py-section-gap-mobile mt-section-gap-desktop" id="resume">
+        <div
+            class="max-w-container-max mx-auto px-margin-page flex flex-col md:flex-row items-center justify-between gap-unit-lg text-center md:text-left">
+            <div>
+                <h2 class="text-headline-md font-headline-md text-white mb-2">Ready to collaborate?</h2>
+                <p class="text-white/80 text-body-lg font-body-lg">Available for freelance opportunities and full-time
+                    roles.</p>
+            </div>
+            <a class="bg-white text-indigo-accent px-8 py-4 rounded-DEFAULT font-label-md text-label-md hover:bg-surface-dim transition-colors flex items-center gap-2 shadow-lg"
+                href="#">
+                Download Resume <span class="material-symbols-outlined">download</span>
+            </a>
+        </div>
+    </section>
+    <!-- Footer Component -->
+    <footer class="bg-surface-dim border-t border-outline-variant/10 w-full" id="contact">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center w-full px-margin-page py-unit-xl max-w-container-max mx-auto gap-unit-lg">
+            <div class="text-label-md font-label-md font-bold text-on-surface">
+                Vrushank Ganatra
+            </div>
+            <div class="flex flex-wrap justify-center gap-gutter">
+                <a class="text-on-surface-variant hover:text-secondary hover:underline transition-all opacity-100 hover:opacity-80 text-body-md font-body-md flex items-center gap-2"
+                    href="#">
+                    GitHub
+                </a>
+                <a class="text-on-surface-variant hover:text-secondary hover:underline transition-all opacity-100 hover:opacity-80 text-body-md font-body-md flex items-center gap-2"
+                    href="#">
+                    LinkedIn
+                </a>
+                <a class="text-on-surface-variant hover:text-secondary hover:underline transition-all opacity-100 hover:opacity-80 text-body-md font-body-md flex items-center gap-2"
+                    href="#">
+                    Email
+                </a>
+                <a class="text-on-surface-variant hover:text-secondary hover:underline transition-all opacity-100 hover:opacity-80 text-body-md font-body-md flex items-center gap-2"
+                    href="#">
+                    Source Code
+                </a>
+            </div>
+            <div class="text-body-md font-body-md text-secondary">
+                © 2026 Vrushank Ganatra. Built with precision.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
