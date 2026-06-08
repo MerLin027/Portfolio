@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0F0F13; font-family: 'Inter', sans-serif; }
+
+        .calculator-wrapper {
+            width: 360px;
+            background: #1A1A24;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+
+        #display-area {
+            width: 100%;
+            background: transparent;
+            padding: 16px 8px 24px;
+            text-align: right;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        #expression-display {
+            font-size: 14px;
+            color: #64748B;
+            min-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            direction: rtl;
+        }
+
+        #main-display {
+            font-size: 48px;
+            font-weight: 300;
+            color: #F1F5F9;
+            letter-spacing: -2px;
+            line-height: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+        }
+
+        #btn-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            padding-top: 8px;
+        }
+
+        .btn {
+            height: 72px;
+            border: none;
+            border-radius: 16px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.08s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: inherit;
+        }
+
+        .btn:active, .btn.active-state {
+            transform: scale(0.93);
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            transform: scale(0);
+            animation: ripple 0.4s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .btn-func {
+            background: #2E2E3E;
+            color: #E2E8F0;
+        }
+        .btn-func:hover {
+            background: #3A3A4E;
+        }
+
+        .btn-op {
+            background: #7C3AED;
+            color: white;
+        }
+        .btn-op:hover {
+            filter: brightness(1.15);
+        }
+        .btn-op[data-value="="] {
+            background: linear-gradient(135deg, #7C3AED, #06B6D4);
+        }
+
+        .btn-num {
+            background: #252530;
+            color: #F1F5F9;
+        }
+        .btn-num:hover {
+            background: #2E2E3E;
+        }
+        .btn-num.zero-btn {
+            grid-column: span 2;
+            text-align: left;
+            padding-left: 28px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-wrapper">
+        <div id="display-area">
+            <div id="expression-display"></div>
+            <div id="main-display">0</div>
+        </div>
+        <div id="btn-grid">
+            <button class="btn btn-func" data-value="AC">AC</button>
+            <button class="btn btn-func" data-value="+/-">+/-</button>
+            <button class="btn btn-func" data-value="%">%</button>
+            <button class="btn btn-op" data-value="÷">÷</button>
+
+            <button class="btn btn-num" data-value="7">7</button>
+            <button class="btn btn-num" data-value="8">8</button>
+            <button class="btn btn-num" data-value="9">9</button>
+            <button class="btn btn-op" data-value="×">×</button>
+
+            <button class="btn btn-num" data-value="4">4</button>
+            <button class="btn btn-num" data-value="5">5</button>
+            <button class="btn btn-num" data-value="6">6</button>
+            <button class="btn btn-op" data-value="−">−</button>
+
+            <button class="btn btn-num" data-value="1">1</button>
+            <button class="btn btn-num" data-value="2">2</button>
+            <button class="btn btn-num" data-value="3">3</button>
+            <button class="btn btn-op" data-value="+">+</button>
+
+            <button class="btn btn-num zero-btn" data-value="0">0</button>
+            <button class="btn btn-num" data-value=".">.</button>
+            <button class="btn btn-op" data-value="=">=</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '0';
+        let previousInput = '';
+        let operator = null;
+        let shouldResetScreen = false;
+        let expressionString = '';
+
+        document.getElementById('btn-grid').addEventListener('click', function(e) {
+            const btn = e.target.closest('.btn');
+            if (!btn) return;
+            
+            // Ripple effect
+            const circle = document.createElement('span');
+            const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+            const radius = diameter / 2;
+            
+            circle.style.width = circle.style.height = `${diameter}px`;
+            const rect = btn.getBoundingClientRect();
+            circle.style.left = `${e.clientX - rect.left - radius}px`;
+            circle.style.top = `${e.clientY - rect.top - radius}px`;
+            circle.classList.add('ripple');
+            
+            const existingRipple = btn.querySelector('.ripple');
+            if (existingRipple) {
+                existingRipple.remove();
+            }
+            btn.appendChild(circle);
+
+            // Clean up ripple after animation
+            setTimeout(() => {
+                circle.remove();
+            }, 400);
+
+            const value = btn.dataset.value;
+            handleInput(value);
+        });
+
+        function handleInput(value) {
+            if (value === 'AC') resetAll();
+            else if (value === '+/-') toggleSign();
+            else if (value === '%') applyPercent();
+            else if (value === '=') calculate();
+            else if (['+', '−', '×', '÷'].includes(value)) setOperator(value);
+            else if (value === '.') appendDecimal();
+            else appendNumber(value);
+        }
+
+        function resetAll() {
+            currentInput = '0'; 
+            previousInput = ''; 
+            operator = null;
+            shouldResetScreen = false; 
+            expressionString = '';
+            updateDisplay();
+        }
+
+        function appendNumber(num) {
+            if (shouldResetScreen) { 
+                currentInput = ''; 
+                shouldResetScreen = false; 
+            }
+            if (currentInput === '0' && num !== '.') currentInput = num;
+            else if (currentInput.length < 12) currentInput += num;
+            updateDisplay();
+        }
+
+        function appendDecimal() {
+            if (shouldResetScreen) { 
+                currentInput = '0'; 
+                shouldResetScreen = false; 
+            }
+            if (!currentInput.includes('.')) currentInput += '.';
+            updateDisplay();
+        }
+
+        function toggleSign() {
+            if (currentInput !== '0' && currentInput !== 'Error') {
+                currentInput = (parseFloat(currentInput) * -1).toString();
+                updateDisplay();
+            }
+        }
+
+        function applyPercent() {
+            if (currentInput !== 'Error') {
+                currentInput = (parseFloat(currentInput) / 100).toString();
+                updateDisplay();
+            }
+        }
+
+        function setOperator(op) {
+            if (operator && !shouldResetScreen) calculate();
+            previousInput = currentInput;
+            operator = op;
+            shouldResetScreen = true;
+            expressionString = currentInput + ' ' + op;
+            updateDisplay();
+        }
+
+        function calculate() {
+            if (!operator || shouldResetScreen) return;
+            const prev = parseFloat(previousInput);
+            const curr = parseFloat(currentInput);
+            let result;
+            if (operator === '+') result = prev + curr;
+            else if (operator === '−') result = prev - curr;
+            else if (operator === '×') result = prev * curr;
+            else if (operator === '÷') {
+                if (curr === 0) { 
+                    currentInput = 'Error'; 
+                    operator = null; 
+                    updateDisplay(); 
+                    return; 
+                }
+                result = prev / curr;
+            }
+            expressionString = previousInput + ' ' + operator + ' ' + currentInput + ' =';
+            currentInput = parseFloat(result.toFixed(10)).toString();
+            operator = null;
+            shouldResetScreen = true;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const display = document.getElementById('main-display');
+            display.textContent = currentInput;
+            document.getElementById('expression-display').textContent = expressionString;
+            
+            let fontSize = 48;
+            display.style.fontSize = fontSize + 'px';
+            while (display.scrollWidth > display.clientWidth && fontSize > 20) {
+                fontSize -= 2;
+                display.style.fontSize = fontSize + 'px';
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '0' && e.key <= '9') {
+                appendNumber(e.key);
+                triggerRipple(e.key);
+            } else if (e.key === '.') {
+                appendDecimal();
+                triggerRipple('.');
+            } else if (e.key === 'Enter' || e.key === '=') {
+                e.preventDefault();
+                calculate();
+                triggerRipple('=');
+            } else if (e.key === 'Backspace') {
+                if (shouldResetScreen) {
+                    currentInput = '0';
+                    shouldResetScreen = false;
+                } else if (currentInput !== 'Error') {
+                    currentInput = currentInput.length > 1 ? currentInput.slice(0, -1) : '0';
+                }
+                updateDisplay();
+            } else if (e.key === 'Escape') {
+                resetAll();
+                triggerRipple('AC');
+            } else {
+                let op = null;
+                if (e.key === '/') op = '÷';
+                else if (e.key === '*') op = '×';
+                else if (e.key === '-') op = '−';
+                else if (e.key === '+') op = '+';
+                
+                if (op) {
+                    setOperator(op);
+                    triggerRipple(op);
+                }
+            }
+        });
+
+        // Helper to show ripple on keyboard press
+        function triggerRipple(value) {
+            const btn = document.querySelector(`.btn[data-value="${value}"]`);
+            if (!btn) return;
+            
+            btn.classList.add('active-state');
+            setTimeout(() => btn.classList.remove('active-state'), 100);
+
+            const circle = document.createElement('span');
+            const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+            const radius = diameter / 2;
+            
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${btn.clientWidth/2 - radius}px`;
+            circle.style.top = `${btn.clientHeight/2 - radius}px`;
+            circle.classList.add('ripple');
+            
+            const existingRipple = btn.querySelector('.ripple');
+            if (existingRipple) {
+                existingRipple.remove();
+            }
+            btn.appendChild(circle);
+
+            // Clean up ripple after animation
+            setTimeout(() => {
+                circle.remove();
+            }, 400);
+        }
+    </script>
+</body>
+</html>
